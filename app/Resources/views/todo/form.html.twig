@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block stylesheets %}
+    {{ parent() }}
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/css/bootstrap-datepicker.css">
+{% endblock %}
+
+{% block body %}
+<form method="POST" class="form">
+    <input type="hidden" name="id" value="{{ next_todo_id }}" />
+    <div class="form-group">
+        <label for="name">
+            Nombre de la tarea
+            <input type="text" name="name" class="form-control" id="name" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="dueDate">
+            Fecha limite de la tarea
+            <input type="date" class="js-datepicker form-control" name="dueDate" id="dueDate" />
+        </label>
+    </div>
+    <input type="submit" value="Guardar" class="btn btn-success" />
+</form>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.4/js/bootstrap-datepicker.min.js"> </script>
+
+    <script>
+        jQuery(document).ready(function() {
+            $('.js-datepicker').datepicker({
+                format: 'yyyy-mm-dd'
+            });
+        });
+    </script>
+{% endblock %}

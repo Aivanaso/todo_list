@@ -1,0 +1,7 @@
+AppBundle\Domain\Todo\Todo:
+  type: entity
+  repositoryClass: AppBundle\Infrastructure\Todo\Persistence\DoctrineTodoRepository
+  table: todo_list
+  id:
+    id:
+      type: todo_id

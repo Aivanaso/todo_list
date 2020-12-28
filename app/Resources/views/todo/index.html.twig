@@ -18,14 +18,18 @@
             </thead>
             <tbody>
                 {% for todo in todoLists %}
-                    <tr {% if 0 == todo.status %}style="background-color: lightcoral"{% endif %}>
-                        <td>{{ todo.name }}</td>
-                        <td>{{ todo.creationDate }}</td>
-                        <td>{{ todo.dueDate }}</td>
+                    <tr id="{{ todo.id }}" {% if 0 == todo.status %}style="background-color: lightcoral"{% endif %}>
                         <td>
-                            {% if 0 == todo.status %}
-                                <input type="button" class="btn btn-sm btn-success" value="Marcar como terminada"/>
-                            {% endif %}
+                            <input type="text" data-id="{{ todo.id }}" data-attribute="name" class="ajax-input input-sm" value="{{ todo.name }}" />
+                        </td>
+                        <td>
+                            {{ todo.creationDate }}
+                        </td>
+                        <td>
+                            <input type="date" data-id="{{ todo.id }}" data-attribute="dueDate" class="ajax-input input-sm js-datepicker" value="{{ todo.dueDate }}" />
+                        </td>
+                        <td>
+                            <input type="checkbox" {% if 0 != todo.status %}checked{% endif %} data-id="{{ todo.id }}" data-attribute="status" class="ajax-input input-sm" />
                         </td>
                     </tr>
                 {% endfor %}
@@ -47,6 +51,34 @@
         jQuery(document).ready(function() {
             $('.js-datepicker').datepicker({
                 format: 'yyyy-mm-dd'
+            });
+            $('.ajax-input').change(function(event){
+                event.preventDefault();
+                var params = [];
+                todoLine = $(this).closest('tr');
+                var id = $(todoLine).attr('id');
+                $(todoLine).find('.ajax-input').each(function(e){
+                    var value = $(this).val();
+                    var name = $(this).attr('data-attribute');
+                    if ('status' === $(this).attr('data-attribute')) {
+                        value = !!$(this).is(':checked');
+                        if (value) {
+                            $(todoLine).css('background-color', '');
+                        } else {
+                            $(todoLine).css('background-color', 'lightcoral');
+                        }
+                    }
+                    params.push({name: name, value: value});
+                });
+
+                $.ajax({
+                    url: Routing.generate('todo_put', {'id' : id}),
+                    data: params,
+                    method: 'POST',
+                    success: (function(data){
+                        $('#main').prepend('<p class="alert alert-success">Modificado con exito</p>');
+                    })
+                });
             });
         });
     </script>

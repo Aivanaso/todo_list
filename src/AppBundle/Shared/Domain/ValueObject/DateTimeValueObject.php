@@ -38,4 +38,9 @@ abstract class DateTimeValueObject
         }
         return $dateTime;
     }
+
+    public function isEqual(DateTimeValueObject $other): bool
+    {
+        return $this->__toString() === $other->__toString();
+    }
 }

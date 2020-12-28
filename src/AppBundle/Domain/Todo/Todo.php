@@ -48,4 +48,25 @@ class Todo
     {
         return $this->status;
     }
+
+    public function changeName(TodoName $name)
+    {
+        if (!$this->name()->isEqual($name)) {
+            $this->name = $name;
+        }
+    }
+
+    public function changeDueDate(TodoDueDate $dueDate)
+    {
+        if (!$this->dueDate()->isEqual($dueDate)) {
+            $this->dueDate = $dueDate;
+        }
+    }
+
+    public function changeStatus(TodoStatus $status)
+    {
+        if (!$this->getStatus()->isEqual($status)) {
+            $this->status = $status;
+        }
+    }
 }

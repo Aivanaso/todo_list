@@ -37,7 +37,7 @@ class TodoFinder
             $todo->id()->value(),
             $todo->name()->value(),
             $todo->creationDate()->value()->format('d/m/Y'),
-            $todo->dueDate()->value()->format('d/m/Y'),
+            $todo->dueDate()->value()->format('Y-m-d'),
             $todo->getStatus()->value()
         );
     }

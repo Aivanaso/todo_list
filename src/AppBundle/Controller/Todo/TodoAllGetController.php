@@ -14,13 +14,20 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TodoAllGetController extends Controller
 {
+    private $handler;
+
+    public function __construct(SearchAllTodoCommandHandler $handler)
+    {
+        $this->handler = $handler;
+    }
+
     /**
      * @Route("/", name="homepage")
      */
-    public function indexAction(Request $request, SearchAllTodoCommandHandler $handler)
+    public function indexAction(Request $request)
     {
         /** @var TodoResponses $todoLists */
-        $todoLists     = $handler->__invoke();
+        $todoLists     = $this->handler->__invoke();
         $todoListArray = [];
         foreach ($todoLists->todolist() as $todo) {
             $todoListArray[] = $this->toArray($todo);

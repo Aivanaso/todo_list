@@ -17,4 +17,9 @@ abstract class BoolValueObject
     {
         return $this->value;
     }
+
+    public function isEqual(BoolValueObject $other): bool
+    {
+        return $this->value() === $other->value();
+    }
 }

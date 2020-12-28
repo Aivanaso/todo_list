@@ -20,4 +20,9 @@ abstract class StringValueObject
     {
         return $this->value;
     }
+
+    public function isEqual(StringValueObject $other): bool
+    {
+        return $this->value() === $other->value();
+    }
 }

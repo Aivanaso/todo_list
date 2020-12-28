@@ -10,4 +10,6 @@ interface TodoRepository
 
     public function searchAll(): array;
 
+    public function find(TodoId $id): ?Todo;
+
 }

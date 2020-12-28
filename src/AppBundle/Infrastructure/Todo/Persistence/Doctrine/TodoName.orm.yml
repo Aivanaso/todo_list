@@ -1,0 +1,4 @@
+AppBundle\Domain\Todo\TodoName:
+  type: embeddable
+  fields:
+    value: {type: string}

@@ -6,7 +6,7 @@ namespace AppBundle\Shared\Domain\ValueObject;
 
 abstract class BoolValueObject
 {
-    private $value;
+    protected $value;
 
     public function __construct(bool $value)
     {

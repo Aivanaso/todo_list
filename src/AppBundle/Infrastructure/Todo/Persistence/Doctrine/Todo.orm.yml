@@ -5,3 +5,17 @@ AppBundle\Domain\Todo\Todo:
   id:
     id:
       type: todo_id
+  embedded:
+    name:
+      class: AppBundle\Domain\Todo\TodoName
+      columPrefix: false
+    creationDate:
+      class: AppBundle\Domain\Todo\TodoCreationDate
+      columPrefix: false
+    dueDate:
+      class: AppBundle\Domain\Todo\TodoDueDate
+      columPrefix: false
+    status:
+      class: AppBundle\Domain\Todo\TodoStatus
+      columPrefix: false
+

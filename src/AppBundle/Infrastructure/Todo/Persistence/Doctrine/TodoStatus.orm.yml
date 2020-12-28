@@ -1,0 +1,4 @@
+AppBundle\Domain\Todo\TodoStatus:
+  type: embeddable
+  fields:
+    value: {type: boolean}

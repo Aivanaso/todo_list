@@ -1,0 +1,4 @@
+AppBundle\Domain\Todo\TodoCreationDate:
+  type: embeddable
+  fields:
+    value: {type: date}

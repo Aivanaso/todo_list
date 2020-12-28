@@ -4,7 +4,7 @@ namespace AppBundle\Shared\Domain\ValueObject;
 
 abstract class StringValueObject
 {
-    private $value;
+    protected $value;
 
     public function __construct(string $value)
     {

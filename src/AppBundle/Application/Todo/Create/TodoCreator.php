@@ -23,7 +23,7 @@ class TodoCreator
 
     public function __invoke(TodoId $id, TodoName $name, TodoDueDate $dueDate)
     {
-        $creationDate = new TodoCreationDate('now');
+        $creationDate = new TodoCreationDate(date('Y-m-d'));
         $status = new TodoStatus(false);
 
         $todo = new Todo($id, $name, $creationDate, $dueDate, $status);

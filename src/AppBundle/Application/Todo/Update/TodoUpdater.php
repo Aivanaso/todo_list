@@ -4,7 +4,7 @@
 namespace AppBundle\Application\Todo\Update;
 
 
-use AppBundle\Domain\Todo\Exception\TodoNotExists;
+use AppBundle\Domain\Todo\Exceptions\TodoNotExists;
 use AppBundle\Domain\Todo\Todo;
 use AppBundle\Domain\Todo\TodoDueDate;
 use AppBundle\Domain\Todo\TodoId;

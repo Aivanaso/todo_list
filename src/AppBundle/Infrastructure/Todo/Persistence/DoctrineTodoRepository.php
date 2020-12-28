@@ -3,6 +3,7 @@
 namespace AppBundle\Infrastructure\Todo\Persistence;
 
 use AppBundle\Domain\Todo\Todo;
+use AppBundle\Domain\Todo\TodoId;
 use AppBundle\Domain\Todo\TodoRepository;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Common\Persistence\ManagerRegistry;
@@ -23,5 +24,10 @@ class DoctrineTodoRepository extends ServiceEntityRepository implements TodoRepo
     public function searchAll(): array
     {
         return $this->findBy([], ['dueDate.value' => 'asc']);
+    }
+
+    public function search(TodoId $id): ?Todo
+    {
+        return $this->find($id);
     }
 }

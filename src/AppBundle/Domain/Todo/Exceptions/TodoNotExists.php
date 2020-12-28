@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Domain\Todo\Exception;
+namespace AppBundle\Domain\Todo\Exceptions;
 
 use AppBundle\Domain\Todo\TodoId;
 use DomainException;

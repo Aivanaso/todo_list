@@ -10,14 +10,21 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class TodoPostController extends Controller
 {
+    private $handler;
+
+    public function __construct(CreateTodoCommandHandler $handler)
+    {
+        $this->handler = $handler;
+    }
+
     /**
      * @Route("/todo", name="todo_post")
      */
-    public function __invoke(Request $request, CreateTodoCommandHandler $handler)
+    public function __invoke(Request $request)
     {
         if ($request->isMethod('POST')) {
             try {
-                $handler->__invoke(
+                $this->handler->__invoke(
                     $request->request->get('id'),
                     $request->request->get('name'),
                     $request->request->get('dueDate')

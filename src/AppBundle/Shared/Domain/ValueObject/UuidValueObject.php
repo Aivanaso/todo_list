@@ -7,7 +7,7 @@ use Ramsey\Uuid\Uuid;
 
 abstract class UuidValueObject
 {
-    private $id;
+    protected $id;
 
     public function __construct($id)
     {

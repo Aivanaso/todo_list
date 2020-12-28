@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<form method="POST" class="form" action="{{ path('todo_post') }}">
+    <input type="hidden" name="id" value="{{ next_todo_id }}" />
+    <div class="form-group">
+        <label for="name">
+            Nombre de la tarea
+            <input type="text" name="name" class="form-control" id="name" />
+        </label>
+    </div>
+    <div class="form-group">
+        <label for="dueDate">
+            Fecha limite de la tarea
+            <input type="date" class="js-datepicker form-control" name="dueDate" id="dueDate" />
+        </label>
+    </div>
+    <input type="submit" value="Guardar" class="btn btn-success" />
+</form>
+{% endblock %}

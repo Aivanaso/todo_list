@@ -22,6 +22,6 @@ class DoctrineTodoRepository extends ServiceEntityRepository implements TodoRepo
 
     public function searchAll(): array
     {
-        // TODO: Implement searchAll() method.
+        return $this->findBy([], ['dueDate.value' => 'asc']);
     }
 }

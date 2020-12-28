@@ -4,7 +4,7 @@
 namespace AppBundle\Shared\Domain\ValueObject;
 
 
-use DateTimeImmutable;
+use DateTime;
 use InvalidArgumentException;
 
 abstract class DateTimeValueObject
@@ -17,21 +17,21 @@ abstract class DateTimeValueObject
         $this->value = $date;
     }
 
-    public function value(): DateTimeImmutable
+    public function value(): DateTime
     {
         return $this->value;
     }
 
     public function __toString(): string
     {
-        $this->value->format('Y-m-d H:i:s');
+        return $this->value->format('Y-m-d');
     }
 
-    private function ensureIsValidDate(string $date, bool $strict = true): DateTimeImmutable
+    private function ensureIsValidDate(string $date, bool $strict = true): DateTime
     {
-        $dateTime = DateTimeImmutable::createFromFormat('Y-m-d', $date);
+        $dateTime = DateTime::createFromFormat('Y-m-d', $date);
         if ($strict) {
-            $errors = DateTimeImmutable::getLastErrors();
+            $errors = DateTime::getLastErrors();
             if (!empty($errors['warning_count'])) {
                 throw new InvalidArgumentException(sprintf('<%s> does not allow the value <%s>.', static::class, $date));
             }

@@ -8,7 +8,30 @@
 
 {% block body %}
     <h1>Listado de tareas</h1>
-
+    {% if todoLists|length %}
+        <table class="table table-condensed">
+            <thead>
+                <th>Tarea</th>
+                <th>Fecha de creacion</th>
+                <th>Fecha limite</th>
+                <th>Terminarla</th>
+            </thead>
+            <tbody>
+                {% for todo in todoLists %}
+                    <tr {% if 0 == todo.status %}style="background-color: lightcoral"{% endif %}>
+                        <td>{{ todo.name }}</td>
+                        <td>{{ todo.creationDate }}</td>
+                        <td>{{ todo.dueDate }}</td>
+                        <td>
+                            {% if 0 == todo.status %}
+                                <input type="button" class="btn btn-sm btn-success" value="Marcar como terminada"/>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
     <div class="row">
         <h2>Crear nueva tarea</h2>
         {{ include('todo/form.html.twig') }}
